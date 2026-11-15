@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8f5">
+  <meta name="description" content="A simple campus lost and found portal to report and find misplaced belongings.">
+  <title>Campus Finds — Lost &amp; Found</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Campus Finds home"><span class="brand-mark" aria-hidden="true">⌕</span><span>campus<span class="brand-light">finds</span></span></a>
+    <nav aria-label="Main navigation"><a href="#browse">Browse items</a><a class="nav-report" href="#report">Report an item <span aria-hidden="true">↗</span></a></nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy"><p class="eyebrow"><span class="live-dot"></span> YOUR CAMPUS COMMUNITY BOARD</p>
+        <h1 id="hero-title">Lost something?<br><em>Found something?</em></h1>
+        <p class="hero-description">A little help goes a long way. Find what’s missing or help someone get it back.</p>
+        <div class="hero-actions"><a class="button button-dark" href="#browse">Browse the board <span aria-hidden="true">↓</span></a><a class="text-link" href="#report">Post a listing <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-sun"></div><div class="art-card card-back">FOUND<br><span>good things</span></div><div class="art-card card-front"><span class="card-icon">✳</span><strong>It’s out there.</strong><small>Let’s bring it home.</small></div><span class="spark spark-one">✳</span><span class="spark spark-two">✦</span></div>
+      <div class="hero-note">GOOD THINGS FIND THEIR WAY BACK <span>✳</span></div>
+    </section>
+
+    <section class="board section-wrap" id="browse" aria-labelledby="board-title">
+      <div class="section-heading"><div><p class="eyebrow">THE COMMUNITY BOARD</p><h2 id="board-title">The lost &amp; found</h2></div><span class="listing-count" id="listing-count" aria-live="polite">0 LISTINGS</span></div>
+      <div class="board-controls"><div class="search-box"><span aria-hidden="true">⌕</span><label class="visually-hidden" for="search-input">Search listings</label><input id="search-input" type="search" placeholder="Search by item, place, or keyword…"></div><div class="filters" role="group" aria-label="Filter listings"><button class="filter-button active" data-filter="all" type="button">Everything</button><button class="filter-button" data-filter="lost" type="button"><span class="filter-dot lost-dot"></span> Lost</button><button class="filter-button" data-filter="found" type="button"><span class="filter-dot found-dot"></span> Found</button></div><label class="select-filter" for="category-filter">CATEGORY <select id="category-filter"><option value="">All categories</option></select></label><label class="select-filter" for="location-filter">LOCATION <select id="location-filter"><option value="">All locations</option></select></label><label class="sort-label" for="sort-select">SORT <select id="sort-select"><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select></label></div>
+      <p class="board-message" id="board-message" role="status" aria-live="polite"></p>
+      <div class="listing-grid" id="listing-grid" aria-live="polite"></div>
+      <div class="empty-state" id="empty-state" hidden><span class="empty-icon">⌕</span><h3>No listings found</h3><p>Try another search, or be the first to post one.</p><button class="button button-outline" type="button" id="clear-search">Clear filters</button></div>
+    </section>
+
+    <section class="report-section" id="report" aria-labelledby="report-title"><div class="report-inner section-wrap"><div class="report-intro"><p class="eyebrow">MAKE A LITTLE DIFFERENCE</p><h2 id="report-title">Put it out there.<br><em>Bring it back.</em></h2><p>Every listing brings a lost thing one step closer to home. Add the details you know — someone on campus might recognize it.</p><div class="report-stamp" aria-hidden="true">GOOD<br>THINGS<br>COME BACK <span>↗</span></div></div>
+        <form id="listing-form" class="listing-form">
+          <div class="form-row"><fieldset class="type-field"><legend>WHAT HAPPENED?</legend><label class="choice"><input type="radio" name="type" value="lost" checked><span>⌕ &nbsp;I lost something</span></label><label class="choice"><input type="radio" name="type" value="found"><span>✳ &nbsp;I found something</span></label></fieldset></div>
+          <div class="form-row two-col"><label>ITEM NAME <input name="title" required maxlength="70" placeholder="e.g. Blue water bottle"></label><label>CATEGORY <select name="category" required><option value="">Choose a category</option><option>Electronics</option><option>Clothing &amp; accessories</option><option>Books &amp; stationery</option><option>Keys &amp; cards</option><option>Bags</option><option>Sports &amp; recreation</option><option>Other</option></select></label></div>
+          <div class="form-row two-col"><label>WHERE? <input name="location" required maxlength="100" placeholder="e.g. Library, second floor"></label><label>WHEN? <input name="date" type="date" required></label></div>
+          <div class="form-row"><label>DETAILS <textarea name="description" rows="3" maxlength="350" placeholder="Color, brand, identifying details… (optional)"></textarea></label></div>
+          <div class="form-row two-col"><label>YOUR NAME <input name="contactName" required maxlength="50" placeholder="First name is fine"></label><label>HOW TO REACH YOU <input name="contact" required maxlength="100" placeholder="Email or campus handle"></label></div>
+          <div class="form-footer"><p>Listings are saved on this device in your browser.</p><button class="button button-dark" type="submit">Post listing <span aria-hidden="true">↗</span></button></div>
+          <p id="form-message" class="form-message" role="status"></p>
+        </form></div></section>
+  </main>
+  <dialog class="item-dialog" id="item-dialog" aria-labelledby="dialog-title"><div class="dialog-header"><p class="eyebrow">ITEM DETAILS</p><button class="dialog-close" type="button" aria-label="Close details">×</button></div><div id="dialog-content"></div><section class="claim-section"><h3>Submit a claim</h3><p>If you believe this item is yours, share a few details so the poster can verify it.</p><p id="claim-closed-message" class="form-message" role="status" hidden></p><form id="claim-form"><label>YOUR NAME <input name="claimName" required maxlength="50"></label><label>HOW TO REACH YOU <input name="claimContact" required maxlength="100" placeholder="Email or campus handle"></label><label>WHY IS IT YOURS? <textarea name="claimMessage" rows="3" required maxlength="350" placeholder="Describe an identifying detail…"></textarea></label><button class="button button-dark" type="submit">Send claim <span aria-hidden="true">↗</span></button><p id="claim-message" class="form-message" role="status"></p></form></section></dialog>
+  <footer class="site-footer"><a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">⌕</span><span>campus<span class="brand-light">finds</span></span></a><p>A little help goes a long way.</p><span>MADE FOR CAMPUS, BY CAMPUS <span class="footer-star">✳</span></span></footer>
+</body>
+</html>
